@@ -1,0 +1,58 @@
+#include<Wire.h>
+#include<Keypad.h>
+
+const byte row = 4,col = 4;
+
+char keys[row][col] = {
+   {'1', '2', '3', 'A'},
+  {'4', '5', '6', 'B'},
+  {'7', '8', '9', 'C'},
+  {'*', '0', '#', 'D'}
+};
+
+byte rowpin[row] = {2,3,4,5};
+byte colpin[col] = {6,7,8,9};
+
+ String number;
+
+
+Keypad cpad = Keypad(makeKeymap(keys),rowpin,colpin,row,col);
+
+
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600);
+}
+
+void loop() {
+
+
+  char x= cpad.getKey();
+
+  if(x != NO_KEY){
+    
+  int r = (x - 48); // or int x = (key - 48);
+  Serial.print(r);
+  number += r;
+  Serial.println(number);
+  }
+   
+ // char v = cpad.getKey();
+ // int y = (v - 48);
+  // Serial.print(y);
+ // int z = y*10 + x;
+
+ // int a = number.toInt();
+  
+ // if(x == '#'){
+ //   Serial.println((String)"you pressed " + a + " key");
+ //   Serial.println((String)"Table of " + a + " is :");
+    
+ //   for (int i = 1;i <= 10 ; i++)
+ //   { 
+ //     Serial.println((String)a + " × " +  i  + " = " + a*i);  
+ //  }
+//  }
+//  }
+ 
+}
